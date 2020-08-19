@@ -1,0 +1,5 @@
+.*.swp
+Parquets/
+build.timestamp
+project/
+target/
