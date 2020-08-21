@@ -3,3 +3,5 @@ Parquets/
 build.timestamp
 project/
 target/
+references/
+*.bkp
