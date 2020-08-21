@@ -218,7 +218,7 @@ object PajekReader
         // convert to RDD
         sc.parallelize( verticesArray )
       }
-	  verticesRDD.cache
+	    verticesRDD.cache
 
   /***************************************************************************
    * parallelize edges, aggregate edges with the same vertices
@@ -229,7 +229,7 @@ object PajekReader
       .map {
         case ((from,to),weight) => (from,(to,weight))
       }
-	  edgesRDD.cache
+	    edgesRDD.cache
 
   /***************************************************************************
    * return Graph
