@@ -143,6 +143,11 @@ object LogFile
     val sqlContext= new org.apache.spark.sql.SQLContext(sc)
     import sqlContext.implicits._
     graph.vertices.toDF.write.parquet( s"$filename-graph-vertices$ext" )
+    graph.vertices
+    .map {
+      case (idx: Long,(name: String,module: Long))
+      => (idx,module)
+    }.toDF.write.parquet( s"$filename-graph-vertices-processed$ext" )
     graph.edges.toDF.write.parquet( s"$filename-graph-edges$ext" )
     part.vertices.saveAsTextFile( s"$filename-part-vertices$ext" )
     part.edges.saveAsTextFile( s"$filename-part-edges$ext" )
