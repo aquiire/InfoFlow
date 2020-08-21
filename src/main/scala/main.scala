@@ -50,13 +50,14 @@ object InfoFlowMain {
    * Initialize Spark Context
    ***************************************************************************/
     def initSpark( sparkConfig: JsonObj ): (SparkConf,SparkContext) = {
+      val appname = sparkConfig.getObj("AppName").value.toString
       val master = sparkConfig.getObj("Master").value.toString
       val numExecutors = sparkConfig.getObj("num executors").value.toString
       val executorCores = sparkConfig.getObj("executor cores").value.toString
       val driverMemory = sparkConfig.getObj("driver memory").value.toString
       val executorMemory = sparkConfig.getObj("executor memory").value.toString
       val spark = new SparkConf()
-        .setAppName("InfoFlow")
+        .setAppName(appname)
         .setMaster( master )
         .set( "spark.executor.instances", numExecutors )
         .set( "spark.executor.cores", executorCores )

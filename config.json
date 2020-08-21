@@ -1,6 +1,7 @@
 {
   "Graph": "Nets/rosvall.net",
   "spark configs": {
+    "AppName": "InfoFlow",
     "Master": "local[*]",
     "num executors": "1",
     "executor cores": "8",
