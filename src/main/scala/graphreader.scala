@@ -23,10 +23,10 @@ object GraphReader
       case _ => throw new Exception("Graph file has no file extension")
     }
     graph.vertices.localCheckpoint
-	graph.vertices.cache
+	  graph.vertices.cache
     val force1 = graph.vertices.count
     graph.edges.localCheckpoint
-	graph.edges.cache
+	  graph.edges.cache
     val force2 = graph.edges.count
     graph
   }
