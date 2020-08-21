@@ -1,0 +1,4 @@
+{
+    "Vertex File": "Parquets/node.parquet",
+    "Edge File": "Parquets/edge.parquet"
+}
