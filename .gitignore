@@ -6,3 +6,4 @@ target/
 references/
 *.bkp
 *.zip
+.idea/

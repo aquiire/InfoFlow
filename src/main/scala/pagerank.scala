@@ -3,6 +3,7 @@
  ***************************************************************************/
 
 import org.apache.spark.rdd.RDD
+import org.apache.spark.storage.StorageLevel
 
 object PageRank
 {
@@ -107,7 +108,8 @@ object PageRank
       case (idx,(bg,Some(sto))) => ( idx, bg+ sto*damping )
       case (idx,(bg,None)) => ( idx, bg )
     }
-	newFreq.cache
+      .persist(StorageLevel.DISK_ONLY_2)
+//	newFreq.cache
 
     // recursive call until freq converges wihtin error threshold
     val err = dist2D(freq,newFreq)

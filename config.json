@@ -1,12 +1,12 @@
 {
-  "Graph": "Nets/rosvall.net",
+  "Graph": "data.parquet",
   "spark configs": {
-    "AppName": "InfoFlow",
-    "Master": "local[*]",
-    "num executors": "1",
-    "executor cores": "8",
-    "driver memory": "10G",
-    "executor memory": "2G"
+    "AppName":"InfoFlow",
+    "Master": "yarn",
+    "num executors": "4",
+    "executor cores": "10",
+    "driver memory": "24G",
+    "executor memory": "16G"
   },
   "PageRank": {
     "tele": 0.15,
@@ -14,14 +14,14 @@
   },
   "Community Detection": {
     "name": "InfoFlow",
-	"merge direction": "symmetric"
+    "merge direction": "symmetric"
   },
   "log": {
     "log path": "Output/log.txt",
-    "Parquet path": "",
+    "Parquet path": "source/infoflow/large",
     "RDD path": "",
     "txt path": "Output/vertex.txt",
-    "Full Json path": "",
+    "Full Json path": "Output/graphfull.json",
     "Reduced Json path": "Output/graph.json",
     "debug": false
   }

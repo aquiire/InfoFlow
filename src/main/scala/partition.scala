@@ -10,6 +10,7 @@
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkContext._
 import org.apache.spark.rdd.RDD
+import org.apache.spark.storage.StorageLevel
 
 sealed case class Partition
 (
@@ -62,15 +63,15 @@ object Partition
       nonselfEdges.join(outLinkTotalWeight).map {
         case (from,((to,weight),norm)) => (from,(to,weight/norm))
       }
-    }
-	edges.cache
+    }.persist(StorageLevel.DISK_ONLY_2)
+//	edges.cache
 
     // exit probability from each vertex
     val ergodicFreq = PageRank(
       Graph(graph.vertices,edges),
       1-tele, errThFactor, logFile
-	)
-    ergodicFreq.cache
+	) .persist(StorageLevel.DISK_ONLY_2)
+//    ergodicFreq.cache
 
     // modular information
     // since transition probability is normalized per "from" node,
@@ -100,12 +101,13 @@ object Partition
     }
 	val forceEval = vertices.count
 	vertices.localCheckpoint
-	vertices.cache
+//	vertices.cache
+	vertices.persist(StorageLevel.DISK_ONLY_2)
 
     val exitw = edges.join(ergodicFreq).map {
       case (from,((to,weight),freq)) => (from,(to,freq*weight))
-    }
-	exitw.cache
+    }.persist(StorageLevel.DISK_ONLY_2)
+//	exitw.cache
 
     val probSum = ergodicFreq.map {
       case (_,p) => CommunityDetection.plogp(p)
