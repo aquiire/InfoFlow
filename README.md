@@ -67,7 +67,7 @@ To suppress a logging feature, put in an empty file path. For example, if you do
 
 `sbt clean assembly`
 
-`spark-submit --class InfoFlowMain --master yarn --conf spark.driver.memoryOverhead=8g --conf spark.executor.memoryOverhead=3g --conf spark.driver.memory=24g --conf --conf spark.driver.maxResultSize=24g --deploy-mode client <path/to/jar> <path/to/config>`
+`spark-submit --class InfoFlowMain --master yarn --conf spark.driver.memoryOverhead=8g --conf spark.executor.memoryOverhead=3g --conf spark.driver.memory=24g --conf spark.driver.maxResultSize=24g --deploy-mode client <path/to/jar> <path/to/config>`
 
 ## Author
 
